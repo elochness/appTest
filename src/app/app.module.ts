@@ -12,9 +12,15 @@ import { TodoPipe } from './pipes/todo.pipe';
 import { TodoComponent } from './todo/todo.component';
 import { TestDirective } from './directives/test.directive';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { ErrorComponent } from './error/error.component';
+import { Sub2Component } from './sub2/sub2.component';
+import { LoginGuard } from './guards/login.guard';
 
 export const ROUTES: Routes = [
-  { path: '', component: SubComponent}
+  { path: '', redirectTo: 'sub1', pathMatch: 'full'},
+  { path: 'sub1', component: SubComponent,  canActivate: [LoginGuard]},
+  { path: 'sub2', component: Sub2Component},
+  { path: '**', component: ErrorComponent}
 ]
 
 @NgModule({
@@ -24,7 +30,9 @@ export const ROUTES: Routes = [
     TodoPipe,
     TodoComponent,
     TestDirective,
-    TodoFormComponent
+    TodoFormComponent,
+    ErrorComponent,
+    Sub2Component
   ],
   imports: [
     BrowserModule,
