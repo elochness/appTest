@@ -1,0 +1,16 @@
+<h2>Sign up</h2>
+
+<form (ngSubmit)="submit(todoForm.value)" #todoForm="ngForm">
+  <div>
+    <label>Title</label>
+    <input type="text" name="title" [(ngModel)]="todo.title" #title="ngModel" required/>
+    <div *ngIf="title.dirty && title.hasError('required')">Title is mandatory</div>
+  </div>
+  <div>
+    <label>Content</label>
+    <input type="text" name="centent" [(ngModel)]="todo.content"/>
+  </div>
+  <button [disabled]="todoForm.isinvalid" type="submit">Submit</button>
+</form>
+
+{{todo | json}}

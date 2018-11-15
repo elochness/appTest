@@ -1,0 +1,37 @@
+<p [textContent]="data">{{title?.content}}</p>
+
+<button (click)="clickHandler()">click me</button>
+
+<div [class]="colorClass">madiv</div>
+
+<input type="text" #name>
+<button (click)="validInput(name)">click me</button>
+
+<div *ngIf="data">You have some data</div>
+
+<input type="text" #varfilter />
+<button (click)="addFilter(varfilter)">add filter</button>
+
+<input type="text" #varColor />
+<button (click)="addFilter(varfilter)">add color</button>
+
+<app-todo-form></app-todo-form>
+<div *ngFor="let todo of todoService.todos | slice:0:10 | todofilter:myfilter" [ngClass]="{'app-green-bg': todo.isImportant()}">
+  <app-todo (todoSelect)="todoSelect(todo)" [todo]="todo" appTest></app-todo>
+ 
+</div>
+<p>{{todoService.todos.length}}</p>
+
+<label for="title">Title</label>
+<input id="title" type="text" #titleTodo>
+
+<label for="content">Content</label>
+<input id="content" type="text" #contentTodo>
+
+<button (click)="clickAddTodo(titleTodo, contentTodo)">add todo</button>
+
+<div [ngSwitch]="todos.length">
+  <div *ngSwitchCase="0">You begin</div>
+  <div *ngSwitchCase="3">You continue</div>
+  <div *ngSwitchDefault>Well !!!!</div>
+</div>
