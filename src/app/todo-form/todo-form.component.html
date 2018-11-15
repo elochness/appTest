@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<!--<h2>Sign up</h2>
 
 <form (ngSubmit)="submit(todoForm.value)" #todoForm="ngForm">
   <div>
@@ -8,9 +8,27 @@
   </div>
   <div>
     <label>Content</label>
-    <input type="text" name="centent" [(ngModel)]="todo.content"/>
+    <input type="text" name="content" [(ngModel)]="todo.content"/>
   </div>
-  <button [disabled]="todoForm.isinvalid" type="submit">Submit</button>
+  <button [disabled]="todoForm.isInvalid" type="submit">Submit</button>
 </form>
 
 {{todo | json}}
+-->
+
+<h2>Code driven</h2>
+
+<form (ngSubmit)="registrer()" [formGroup]="todoForm2">
+  <div>
+    <label>Title</label>
+    <input type="text" formControlName="title"/>
+    <div *ngIf="titleCtrl.dirty && titleCtrl.hasError('required')">Title is mandatory</div>
+    <div *ngIf="titleCtrl.dirty && titleCtrl.hasError('minlength')">Title should be 3</div>
+  </div>
+  <div>
+    <label>Content</label>
+    <input type="password" formControlName="content"/>
+    <div *ngIf="contentCtrl.dirty && contentCtrl.hasError('required')">Content is mandatory</div>
+  </div>
+  <button type="submit">Register</button>
+</form>

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SubComponent } from './sub/sub.component';
@@ -10,6 +12,10 @@ import { TodoPipe } from './pipes/todo.pipe';
 import { TodoComponent } from './todo/todo.component';
 import { TestDirective } from './directives/test.directive';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+
+export const ROUTES: Routes = [
+  { path: '', component: SubComponent}
+]
 
 @NgModule({
   declarations: [
@@ -22,7 +28,10 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     {
