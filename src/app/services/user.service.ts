@@ -17,10 +17,10 @@ export class UserService {
     private httpClient: HttpClient
     ) {}
 
-  public isLoggedIn(): boolean {
-    return this.isLogged;
-  }
-
+    public isLoggedIn(): boolean {
+      return this.isLogged;
+    }
+ 
   public getUsers(): Observable<User[]> {
     return this.httpClient
     .get<User[]>("https://jsonplaceholder.typicode.com/users");

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Meta } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
  
+
   constructor(
     private meta: Meta,
     private httpClient: HttpClient
@@ -30,19 +31,23 @@ export class AppComponent implements OnInit {
     public createObservable() {
       let a = 0;
 
-      const o = new Observable(sub => {
-        setInterval(() => {
-          a++;
-          sub.next(a);
-        },1000);
-      });
+      // const o = new Observable(sub => {
+      //   setInterval(() => {
+      //     a++;
+      //     sub.next(a);
+      //   },1000);
+      // });
 
-      o.subscribe(data => {
-        console.log(data);
-      });
+      // o.subscribe(data => {
+      //   console.log(data);
+      // });
 
-      o.subscribe(data => {
-        console.log(data);
-      });
+      // o.subscribe(data => {
+      //   console.log(data);
+      // });
+    }
+
+    ngOnDestroy(): void {
+      
     }
 }

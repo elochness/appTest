@@ -1,3 +1,4 @@
 <li *ngFor="let user of usersArray">{{user.name}} {{user.username}}</li>
 
-<li *ngFor="let user of users | async">{{user.name}} {{user.username}}</li>
+<!-- Observable -->
+<li *ngFor="let user of users">{{user.name}} {{user.username}}</li>

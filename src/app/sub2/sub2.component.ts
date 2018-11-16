@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sub2',
@@ -13,23 +14,29 @@ import 'rxjs/add/operator/mergeMap';
 export class Sub2Component implements OnInit {
 
   usersArray: Array<User>;
-  users: Observable<User[]>;
+  users: User[];
 
-  constructor(public userService: UserService) { }
+  constructor(
+    public userService: UserService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
 
-    this.userService.getUsers().subscribe((data) => {
-      this.usersArray = data;
-    })
-    this.users = this.userService.getUsers();
+    this.route.data.subscribe((data) => {
+      this.users = data['msg'];
+    });
+    // this.userService.getUsers().subscribe((data) => {
+    //   this.usersArray = data;
+    // })
+    // this.users = this.userService.getUsers();
 
-    this.userService
-    .getUsers()
-    .mergeMap(res => res)
-    .filter((elem) =>   elem.username === 'Bret')
-    .subscribe(data => console.log(data)
-    );
+    // this.userService
+    // .getUsers()
+    // .mergeMap(res => res)
+    // .filter((elem) =>   elem.username === 'Bret')
+    // .subscribe(data => console.log(data)
+    // );
   }
 
 

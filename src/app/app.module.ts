@@ -15,11 +15,12 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { ErrorComponent } from './error/error.component';
 import { Sub2Component } from './sub2/sub2.component';
 import { LoginGuard } from './guards/login.guard';
+import { MsgResolverService } from './services/msg-resolver.service';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'sub1', pathMatch: 'full'},
   { path: 'sub1', component: SubComponent,  canActivate: [LoginGuard]},
-  { path: 'sub2', component: Sub2Component},
+  { path: 'sub2', component: Sub2Component, resolve: { msg: MsgResolverService}},
   { path: '**', component: ErrorComponent}
 ]
 
